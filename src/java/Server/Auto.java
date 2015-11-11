@@ -6,8 +6,13 @@
 package Server;
 
 import static Server.SerialClass.writeData;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,19 +38,36 @@ public class Auto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        
+       
         SerialClass main = new SerialClass();
-            main.initialize();
-            Thread t=new Thread() {
+        main.initialize();
+
+        String value = request.getParameter("led1");
+
+        Thread t = new Thread() {
             public void run() {
-            //the following line will keep this app alive for 1000 seconds,
-            //waiting for events to occur and responding to them (printing incoming messages to console).
-            try {Thread.sleep(1500);
-            writeData("1");} catch (InterruptedException ie) {}
-            }
-            };
-            t.start();
-            System.out.println("Started");
+//the following line will keep this app alive for 1000 seconds,
+//waiting for events to occur and responding to them (printing incoming messages to console).
+                try {
+                    Thread.sleep(1500);
+                    if (value.equals("on")) {
+                        writeData("1");
+                        
+                    } else if (value.equals("off")) {
+                        writeData("2");
+
+                    }
+                } catch (InterruptedException ie) {
                 }
+            }
+        };
+        t.start();
+        System.out.println("Started");
+
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

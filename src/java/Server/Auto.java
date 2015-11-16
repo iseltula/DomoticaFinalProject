@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,13 +39,24 @@ public class Auto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+           
+		
         
        
         SerialClass main = new SerialClass();
         main.initialize();
 
         String value = request.getParameter("led1");
+        Enumeration en=request.getParameterNames();
+        
+        while(en.hasMoreElements())
+		{
+			Object objOri=en.nextElement();
+			String paramet=(String)objOri;
+			String val=request.getParameter(paramet);
+			System.out.println("Parameter Name is '"+paramet+"' and Parameter Value is '"+val+"'");
+		}		
+			
 
         Thread t = new Thread() {
             public void run() {

@@ -46,31 +46,35 @@ public class Auto extends HttpServlet {
         SerialClass main = new SerialClass();
         main.initialize();
 
-        String value = request.getParameter("led1");
+        
         Enumeration en=request.getParameterNames();
         
-        while(en.hasMoreElements())
-		{
-			Object objOri=en.nextElement();
-			String paramet=(String)objOri;
-			String val=request.getParameter(paramet);
-			System.out.println("Parameter Name is '"+paramet+"' and Parameter Value is '"+val+"'");
-		}		
+       		
 			
 
         Thread t = new Thread() {
             public void run() {
+                String name = "";
+                String action = "";
+                 while(en.hasMoreElements())
+		{
+			Object objOri=en.nextElement();
+			name=(String)objOri;
+			action=request.getParameter(name);
+			System.out.println("Parameter Name is '"+action+"' and Parameter Value is '"+name+"'");
+		}
+                
 //the following line will keep this app alive for 1000 seconds,
 //waiting for events to occur and responding to them (printing incoming messages to console).
                 try {
                     Thread.sleep(1500);
-                    if (value.equals("on")) {
-                        writeData("1");
+                     writeData(name);
                         
-                    } else if (value.equals("off")) {
-                        writeData("2");
-
-                    }
+                    Thread.sleep(2000);
+                     writeData(action);
+                    
+                    Thread.sleep(2000);
+                   
                 } catch (InterruptedException ie) {
                 }
             }

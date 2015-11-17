@@ -39,38 +39,31 @@ public class Auto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-           
-		
-        
-       
+        String action;
+        String valores;
+
         SerialClass main = new SerialClass();
         main.initialize();
-
-        String value = request.getParameter("led1");
-        Enumeration en=request.getParameterNames();
-        
-        while(en.hasMoreElements())
-		{
-			Object objOri=en.nextElement();
-			String paramet=(String)objOri;
-			String val=request.getParameter(paramet);
-			System.out.println("Parameter Name is '"+paramet+"' and Parameter Value is '"+val+"'");
-		}		
-			
 
         Thread t = new Thread() {
             public void run() {
 //the following line will keep this app alive for 1000 seconds,
 //waiting for events to occur and responding to them (printing incoming messages to console).
-                try {
-                    Thread.sleep(1500);
-                    if (value.equals("on")) {
-                        writeData("1");
-                        
-                    } else if (value.equals("off")) {
-                        writeData("2");
-
+                Enumeration en = request.getParameterNames();
+                String paramet="";
+                String val="";
+                while (en.hasMoreElements()) {
+                    Object objOri = en.nextElement();
+                     paramet = (String) objOri;
+                     val = request.getParameter(paramet);
+                    System.out.println("Parameter Name is '" + paramet + "' and Parameter Value is '" + val + "'");
                     }
+                try {
+                        writeData(paramet);
+                        Thread.sleep(1000);
+                      //  writeData(val);
+                       // System.out.println(val.getBytes());
+                        System.out.println(paramet.getBytes());
                 } catch (InterruptedException ie) {
                 }
             }
@@ -79,7 +72,6 @@ public class Auto extends HttpServlet {
         System.out.println("Started");
 
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

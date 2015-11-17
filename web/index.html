@@ -8,7 +8,7 @@
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script><src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
 function Show() {
     document.getElementById("yes").style.visibility = "visible";
@@ -81,23 +81,23 @@ function Hide() {
   <div class="row">
     <div class="text-justify col-sm-4">
     <h3>LIGHTS</h3>
-    <form action="Auto">
+    <form>
       <span class="label label-primary">LIVING</span>
       <div class="btn-group " role="group">
-        <button type="submit" class="btn btn-default" name="1" value="off" onclick="Hide()">ON</button>
-        <button type="submit" class="btn btn-default" name="1" value="96" onclick="Hide()">OFF</button>
-        <button type="submit" class="btn btn-default" name="1" value="auto" onclick="Hide()">AUTO</button>
-        <button type="submit" class="btn btn-default" name="1" value="horario" onclick="Show()">HORARIO</button>
+        <button type="submit" class="btn btn-default" name="led1" value="on" onclick="Hide()">ON</button>
+        <button type="submit" class="btn btn-default" name="led1" value="off" onclick="Hide()">OFF</button>
+        <button type="submit" class="btn btn-default" name="led1" value="auto" onclick="Hide()">AUTO</button>
+        <button type="submit" class="btn btn-default" name="led1" value="horario" onclick="Show()">HORARIO</button>
       </div>
     </form>
     <br>
-    <form action="Auto">
+    <form>
       <span class="label label-primary">MASTER</span>
       <div class="btn-group" role="group">
-        <button type="submit" class="btn btn-default" name="2" value=1 onclick="Hide()">ON</button>
-        <button type="submit" class="btn btn-default" name="2" value=2 onclick="Hide()">OFF</button>
-        <button type="submit" class="btn btn-default" name="2" value="auto" onclick="Hide()">AUTO</button>
-        <button type="submit" class="btn btn-default" name="2" value="horario" onclick="Show()">HORARIO</button>
+        <button type="submit" class="btn btn-default" name="led2" value="on" onclick="Hide()">ON</button>
+        <button type="submit" class="btn btn-default" name="led2" value="off" onclick="Hide()">OFF</button>
+        <button type="submit" class="btn btn-default" name="led2" value="auto" onclick="Hide()">AUTO</button>
+        <button type="submit" class="btn btn-default" name="led2" value="horario" onclick="Show()">HORARIO</button>
       </div>
     </form>
     <br>

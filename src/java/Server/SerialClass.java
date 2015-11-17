@@ -95,6 +95,7 @@ System.err.println(e.toString());
  
 public static synchronized void writeData(String data) {
 System.out.println("Sent: " + data);
+System.out.println(data.getBytes());
 try {
 output.write(data.getBytes());
 } catch (Exception e) {

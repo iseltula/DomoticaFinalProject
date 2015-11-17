@@ -63,7 +63,7 @@ public class Auto extends HttpServlet {
 //the following line will keep this app alive for 1000 seconds,
 //waiting for events to occur and responding to them (printing incoming messages to console).
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(1500);
                     if (value.equals("on")) {
                         writeData("1");
                         
